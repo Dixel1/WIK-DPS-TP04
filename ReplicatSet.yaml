@@ -1,0 +1,23 @@
+#Création d'un ReplicatSet pour déployer 4 réplicas du Pod (voir fichier pod.yaml)
+apiVersion: apps/v1
+kind: ReplicaSet
+#Inscription des métadatas
+metadata:
+  name: replica_set_echo
+#Définition des spécifications
+spec:
+  #Création de 4 réplicats
+  replicas: 4
+  selector:
+    matchLabels:
+      tier: echo
+  #Définition du template
+  template:
+    metadata:
+      labels:
+        tier: echo
+    #Définition des spécifications et du container à utiliser
+    spec:
+      containers:
+        - name: echo
+          image: registry.cluster.wik.cloud/public/echo

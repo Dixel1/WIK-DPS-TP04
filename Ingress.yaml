@@ -1,0 +1,25 @@
+#Création d'un Ingress pour communiquer avec le Service (voir Service.yaml)
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+#Définition des métadatas
+metadata:
+  name: echo-ingress
+#Définition des spécifications
+spec:
+  #Spécification du type (ici "nginx")
+  ingressClassName: nginx
+  #Création des règles
+  rules:
+    #Sélection de l'hôte "echo.ingress.wik.xyz"
+    - host: echo.ingress.wik.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            #Spécification du backend
+            backend:
+              #Utilisation du service "echo_ingress_service" définit sur le port "8080"
+              service:
+                name: echo_ingress_service
+                port:
+                  number: 8080

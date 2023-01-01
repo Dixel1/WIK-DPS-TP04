@@ -1,0 +1,16 @@
+#Création d'un pod pour déployer l'image registry.cluster.wik.cloud/public/echo
+apiVersion: v1
+kind: Pod
+#Inscription des métadatas
+metadata:
+  name: echo
+#Définitions des spécifications
+spec:
+  #On définis le container à déployer
+  containers:
+    - name: echo
+      #L'image du container à déployer est "registry.cluster.wik.cloud/public/echo"
+      image: registry.cluster.wik.cloud/public/echo
+      #Le port d'écoute du container sera 8080
+      ports:
+        containerPort: 8080

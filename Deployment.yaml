@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+#Inscription des metadatas du fichier Deployment.yaml
+metadata:
+  name: deployment_echo
+#Inscription des spécifications
+spec:
+  #Déploiement de 4 réplicas du Pod 
+  replicas: 4
+  selector:
+    matchLabels:
+      app: echo
+  #Stratégie de mise à jour en RollingUpdate (taux de 50%)
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+  #Définition du template
+  template:
+    metadata:
+      labels:
+        app: echo
+    #Définition des spécifications du container à utiliser
+    spec:
+      #Utilisation du container de nom "echo" avec pour image registry.cluster.wik.cloud/public/echo et écoutant sur le port 8080
+      containers:
+        - name: echo
+          image: registry.cluster.wik.cloud/public/echo
+          ports:
+            - containerPort: 8080
