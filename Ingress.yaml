@@ -23,7 +23,6 @@ spec:
                 name: echo_ingress_service
                 port:
                   number: 8080
-
 ---
 #Création d'un service pour pouvoir communiquer avec les Pod du ReplicaSet
 apiVersion: v1
